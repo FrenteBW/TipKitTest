@@ -6,19 +6,39 @@
 //
 
 import SwiftUI
+import TipKit
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+
+// Define your tip's content.
+struct SampleTip: Tip {
+    var title: Text {
+        Text("Save as a Favorite")
+    }
+
+
+    var message: Text? {
+        Text("Your favorite backyards always appear at the top of the list.")
+    }
+
+
+    var image: Image? {
+        Image(systemName: "star")
     }
 }
 
-#Preview {
-    ContentView()
+
+struct ContentView: View {
+    
+    var tip = SampleTip()
+
+
+    var body: some View {
+        VStack {
+            TipView(tip, arrowEdge: .bottom)
+            Image(systemName: "star")
+                .imageScale(.large)
+            Spacer()
+        }
+        .padding()
+    }
 }
